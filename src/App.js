@@ -1,4 +1,6 @@
 import React from 'react';
+import "antd/dist/antd.css";
+import './App.css';
 import {
     BrowserRouter as Router,
     Switch,
@@ -6,7 +8,8 @@ import {
     Link
 } from "react-router-dom";
 
-import Login  from './Components/Auth/Login'
+import Login from './Components/Auth/Login'
+import SignUp from "./Components/Auth/SignUp";
 
 function App() {
     return (
@@ -15,11 +18,11 @@ function App() {
                 {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
                 <Switch>
-                    <Route path="/">
-                        { Login() }
+                    <Route exact path="/">
+                        <Login />
                     </Route>
-                    <Route path="/users/login">
-                        { Login() }
+                    <Route path="/auth/signup">
+                        <SignUp />
                     </Route>
                 </Switch>
             </div>

@@ -1,22 +1,24 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'BAUHS93';
+  src: url('./Fonts/Bauhaus93/BAUHS93.eot');
+  src: url('./Fonts/Bauhaus93/BAUHS93.eot?#iefix') format('embedded-opentype'),
+  url('./Fonts/Bauhaus93/BAUHS93.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.App-logo {
-  height: 40vmin;
+@font-face {
+  font-family: 'Solway-Regular';
+  src: url('./Fonts/Solway/Solway-Regular.eot');
+  src: url('./Fonts/Solway/Solway-Regular.eot?#iefix') format('embedded-opentype'),
+  url('./Fonts/Solway/Solway-Regular.svg#Solway-Regular') format('svg'),
+  url('./Fonts/Solway/Solway-Regular.ttf') format('truetype'),
+  url('./Fonts/Solway/Solway-Regular.woff') format('woff'),
+  url('./Fonts/Solway/Solway-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
+html, body {
+  height: 100%;
 }
