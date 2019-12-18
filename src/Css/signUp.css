@@ -1,0 +1,5 @@
+.Container .signUpImg {
+    background-image: url("../image/signUpImage1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}

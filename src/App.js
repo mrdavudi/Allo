@@ -10,6 +10,7 @@ import {
 
 import Login from './Components/Auth/Login'
 import SignUp from "./Components/Auth/SignUp";
+import Messenger from "./Components/messenger/Messenger";
 
 function App() {
     return (
@@ -19,10 +20,16 @@ function App() {
             renders the first one that matches the current URL. */}
                 <Switch>
                     <Route exact path="/">
-                        <Login />
+                        <Login/>
+                    </Route>
+                    <Route path="/auth/login">
+                        <Login/>
                     </Route>
                     <Route path="/auth/signup">
-                        <SignUp />
+                        <SignUp/>
+                    </Route>
+                    <Route path="/messenger">
+                        <Messenger/>
                     </Route>
                 </Switch>
             </div>

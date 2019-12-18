@@ -2,8 +2,11 @@ import React, {useState} from 'react';
 import CustomiseInput from '../Inputs/CustomiseInput'
 import CustomiseButton from "../Inputs/CustomiseButton";
 import '../../Css/LoginAndRegister.css'
+import '../../Css/signUp.css'
 import axios from 'axios'
+import {Redirect} from 'react-router-dom'
 
+window.document.title = 'Allo SignUp'
 
 function SignUp(props) {
 
@@ -17,16 +20,16 @@ function SignUp(props) {
 
 
     function doSignUp() {
-        axios.post('http://click.7grid.ir/auth/signin/', {
+
+        axios.post('http://click.7grid.ir/auth/signup/', {
             email: field.email,
             password: field.password
         })
             .then(function (response) {
-                console.log(response)
+                window.localStorage.setItem('token', response.data.data.token)
             })
             .catch(function (error) {
                 let errorNumber = error.message.replace(/^\D+/g, '');
-                console.log('ERorrIN::::', errorNumber);
 
                 switch (errorNumber) {
                     case '400':
@@ -55,7 +58,7 @@ function SignUp(props) {
         <React.Fragment>
             <div className={'Container'}>
 
-                <div className={'leftSide'}></div>
+                <div className={'leftSide signUpImg'}></div>
 
                 <div className={'rightSide'}>
                     <div className={'loginTitle'}>
@@ -93,12 +96,12 @@ function SignUp(props) {
                         <div>
                             <CustomiseButton
                                 type={'primary'}
-                                value={'SIGNIN'}
+                                value={'SIGNUP'}
                                 onClick={() => doSignUp()}
                             />
                         </div>
                         <div>
-                            <CustomiseButton value={'SIGNUP'}/>
+                            <CustomiseButton value={'SIGNIN'} />
                         </div>
                     </div>
 

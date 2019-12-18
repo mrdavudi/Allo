@@ -2,9 +2,12 @@ import React, {useState} from 'react';
 import CustomiseInput from '../Inputs/CustomiseInput'
 import CustomiseButton from "../Inputs/CustomiseButton";
 import '../../Css/LoginAndRegister.css'
-import {connect} from 'react-redux'
+import '../../Css/login.css'
 import axios from 'axios'
+import {Redirect} from 'react-router-dom'
+import validateFunction from "../validation/validateFunction";
 
+window.document.title = 'Allo login'
 
 function Login(props) {
 
@@ -18,28 +21,36 @@ function Login(props) {
 
 
     function doLogin() {
-        axios.post('http://click.7grid.ir/auth/signin/', {
-            email: field.email,
-            password: field.password
-        })
-            .then(function (response) {
-                console.log(response)
-            })
-            .catch(function (error) {
-                let errorNumber = error.message.replace(/^\D+/g, '');
-                console.log('ERorrIN::::', errorNumber);
+        let validate = validateFunction('email', field.email)
 
-                switch (errorNumber) {
-                    case '400':
-                        setError('Email or Password is wrong!')
-                        break
-                    case '401':
-                        setError('Email or Password is wrong!')
-                        break
-                    default:
-                        setError('try again!')
-                }
-            });
+        if (validate === undefined || validate === '' || validate === []) {
+
+            axios.post('http://click.7grid.ir/auth/signin/', {
+                email: field.email,
+                password: field.password
+            })
+                .then(function (response) {
+                    window.localStorage.setItem('token', response.data.data.token)
+                    console.log(response.data.data.token)
+                    return <Redirect to={'/auth/signup'}/>
+                })
+                .catch(function (error) {
+                    let errorNumber = error.message.replace(/^\D+/g, '');
+
+                    switch (errorNumber) {
+                        case '400':
+                            setError('Email or Password is wrong!')
+                            break
+                        case '401':
+                            setError('Email or Password is wrong!')
+                            break
+                        default:
+                            setError('try again!')
+                    }
+                });
+        } else {
+            setError('Complete fields')
+        }
     }
 
 
@@ -56,7 +67,7 @@ function Login(props) {
         <React.Fragment>
             <div className={'Container'}>
 
-                <div className={'leftSide'}></div>
+                <div className={'leftSide loginImg'}></div>
 
                 <div className={'rightSide'}>
                     <div className={'loginTitle'}>
@@ -109,8 +120,4 @@ function Login(props) {
     )
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    dispatch: dispatch
-})
-
-export default connect(mapDispatchToProps)(Login)
+export default Login

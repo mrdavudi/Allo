@@ -2,54 +2,12 @@ import React, {useState, useEffect} from 'react';
 import validate from 'validate.js'
 import {Input, Icon} from "antd";
 import '../../Css/LoginAndRegister.css'
-
+import handleValidation from "../validation/validateFunction";
 
 /*
 * this function validate your TextField
 * you can add every validation that you want, and call it at end of function in condition
 * */
-
-function handleValidation(fieldName, fieldValue) {
-
-    let EmailValidation = {
-        EmailValidation: {
-            presence: {
-                allowEmpty: false,
-                message: fieldName + ' can\'t be blank',
-            },
-            length: {
-                maximum: 20,
-                message: fieldName + ' must be at most 20 characters'
-            },
-            email: {
-                message: 'Invalid email',
-            },
-        },
-    };
-
-    let PasswordValidation = {
-        PasswordValidation: {
-            presence: {
-                allowEmpty: false,
-                message: fieldName + ' can\'t be blank',
-            },
-            format: {
-                pattern: "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",
-                message: "invalid password. use complex 8 characters"
-            },
-            length: {
-                maximum: 20,
-                message: fieldName + ' must be at most 20 characters'
-            },
-        },
-    };
-
-    if (fieldName === 'email') {
-        return validate({EmailValidation: fieldValue}, EmailValidation);
-    } else if (fieldName === 'password') {
-        return validate({PasswordValidation: fieldValue}, PasswordValidation);
-    }
-};
 
 
 function CustomiseInput(props) {
