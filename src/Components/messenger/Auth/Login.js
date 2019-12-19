@@ -8,9 +8,8 @@ import validateFunction from "../../validation/ValidateFunction";
 import {Button} from "antd";
 import {useToasts} from 'react-toast-notifications'
 import {withRouter} from "react-router-dom";
-
-
-window.document.title = 'Allo login'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faHome} from '@fortawesome/free-solid-svg-icons'
 
 function Login(props) {
 
@@ -79,6 +78,13 @@ function Login(props) {
                     <div className={'loginTitle'}>
                         <h1>Hello Friend!</h1>
                         <p>Enter your personal detail to LogIn</p>
+                        <div className={'home'}>
+                            <Link
+                                to={'/'}
+                                className={'btnDefault'}>
+                                {<FontAwesomeIcon icon={faHome}/>}
+                            </Link>
+                        </div>
                     </div>
 
                     <div className={'loginInputs'}>

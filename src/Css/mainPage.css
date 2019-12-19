@@ -1,0 +1,70 @@
+body {
+    background-color: #e0e0e0;
+}
+
+.container {
+    background-color: #ffffff;
+    width: 70vw;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px #888888;
+}
+
+.container .rightSide {
+    width: 45vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-grow: 3;
+    background-image: url("../image/mainpage3.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-radius: 0 5px 5px 0;
+    color: #f09595;
+}
+.container .leftSide {
+    width: 25vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-grow: 1;
+    color: #ffffff;
+    text-align: left;
+    border-radius: 5px 0 0 5px;
+
+}
+
+.container .leftSide .logo{
+    display: flex;
+    flex-grow: 2;
+    background-image: url("../image/logo.png");
+    background-repeat: no-repeat;
+    background-size: 40%;
+    width: 20vw;
+}
+
+.container .leftSide .description{
+    display: flex;
+    flex-grow: 8;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-left: 15px;
+    text-align: justify;
+}
+
+.container .leftSide .description .LoginSignUpBtn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 15vw;
+}
