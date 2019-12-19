@@ -1,49 +1,85 @@
 import React, {useState} from 'react';
-import CustomiseInput from '../Inputs/CustomiseInput'
-import '../../Css/LoginAndRegister.css'
-import '../../Css/signUp.css'
+import CustomiseInput from '../../Inputs/CustomiseInput'
+import '../../../Css/LoginAndRegister.css'
+import '../../../Css/signUp.css'
 import axios from 'axios'
-import {Link, Redirect} from 'react-router-dom'
-import {createBrowserHistory} from 'history';
+import {Link} from 'react-router-dom'
 import {Button} from "antd";
+import {withRouter} from "react-router-dom";
+import validateFunction from "../../validation/ValidateFunction";
+import {useToasts} from "react-toast-notifications";
 
 window.document.title = 'Allo SignUp'
-const history = createBrowserHistory()
+
 
 function SignUp(props) {
 
     /* state for TextFields */
     const [field, setField] = useState({
         email: '',
-        password: ''
+        password: '',
+        confirmPassword: ''
     });
 
     const [error, setError] = useState('')
 
+    const {addToast, removeAllToasts} = useToasts()
 
     function doSignUp() {
+        let emailValidate = validateFunction('email', field.email)
+        let passwordValidate = validateFunction('password', field.password)
 
-        axios.post('http://click.7grid.ir/auth/signup/', {
-            email: field.email,
-            password: field.password
-        })
-            .then(function (response) {
-                window.localStorage.setItem('token', response.data.data.token)
+        if (emailValidate === null
+            && passwordValidate === null
+            && field.password === field.confirmPassword) {
+
+            axios.post('http://click.7grid.ir/auth/signup/', {
+                email: field.email,
+                password: field.password
             })
-            .catch(function (error) {
-                let errorNumber = error.message.replace(/^\D+/g, '');
-
-                switch (errorNumber) {
-                    case '400':
-                        setError('400')
-                        break
-                    case '401':
-                        setError('401')
-                        break
-                    default:
-                        setError('try again!')
-                }
-            });
+                .then((response) => {
+                    window.localStorage.setItem('token', response.data.token)
+                    props.history.push('/messenger')
+                })
+                .catch((error) => {
+                    let errorNumber = error.message.replace(/^\D+/g, '');
+                    switch (errorNumber) {
+                        case '400':
+                            removeAllToasts()
+                            addToast('Complete fields!', {
+                                appearance: 'error',
+                                autoDismiss: true,
+                            })
+                            break
+                        case '401':
+                            removeAllToasts()
+                            addToast('Email or password is wrong!', {
+                                appearance: 'error',
+                                autoDismiss: true,
+                            })
+                            break
+                        case '409':
+                            removeAllToasts()
+                            addToast('This email is already taken!', {
+                                appearance: 'error',
+                                autoDismiss: true,
+                            })
+                            break
+                        default:
+                            removeAllToasts()
+                            addToast('Try agaiin!', {
+                                appearance: 'error',
+                                autoDismiss: true,
+                            })
+                    }
+                });
+        } else if (field.password !== field.confirmPassword) {
+            removeAllToasts()
+            addToast('Confirm password is not equal to password', {
+                appearance: 'error',
+                autoDismiss: true,
+            })
+        }
     }
 
 
@@ -117,4 +153,4 @@ function SignUp(props) {
     )
 }
 
-export default SignUp
+export default withRouter(SignUp)

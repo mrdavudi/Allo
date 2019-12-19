@@ -9,9 +9,10 @@ import {
     Link
 } from "react-router-dom";
 
-import Login from './Components/Auth/Login'
-import SignUp from "./Components/Auth/SignUp";
+import Login from './Components/messenger/Auth/Login'
+import SignUp from "./Components/messenger/Auth/SignUp";
 import Messenger from "./Components/messenger/Messenger";
+import MainPage from "./Components/messenger/mainPage";
 
 function App() {
     return (
@@ -21,7 +22,7 @@ function App() {
             renders the first one that matches the current URL. */}
                 <Switch>
                     <Route exact path="/">
-                        <Login/>
+                        <MainPage/>
                     </Route>
                     <Route path="/auth/signin">
                         <Login/>

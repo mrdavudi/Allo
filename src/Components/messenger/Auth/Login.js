@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
-import CustomiseInput from '../Inputs/CustomiseInput'
-import '../../Css/LoginAndRegister.css'
-import '../../Css/login.css'
+import CustomiseInput from '../../Inputs/CustomiseInput'
+import '../../../Css/LoginAndRegister.css'
+import '../../../Css/login.css'
 import axios from 'axios'
-import {Link, Redirect} from 'react-router-dom'
-import validateFunction from "../validation/ValidateFunction";
+import {Link} from 'react-router-dom'
+import validateFunction from "../../validation/ValidateFunction";
 import {Button} from "antd";
-import {ToastProvider, useToasts} from 'react-toast-notifications'
+import {useToasts} from 'react-toast-notifications'
+import {withRouter} from "react-router-dom";
+
 
 window.document.title = 'Allo login'
 
@@ -18,45 +20,47 @@ function Login(props) {
         password: ''
     });
 
-    const [error, setError] = useState('')
-
-    const {addToast} = useToasts()
+    const {addToast, removeAllToasts} = useToasts()
 
     function doLogin() {
-        let Emailvalidate = validateFunction('email', field.email)
-        let validate = validateFunction('email', field.email)
+        let emailValidate = validateFunction('email', field.email)
+        let passwordValidate = validateFunction('password', field.password)
 
-        if (validate === null) {
-
+        if (emailValidate === null && passwordValidate === null) {
             axios.post('http://click.7grid.ir/auth/signin/', {
                 email: field.email,
                 password: field.password
             })
                 .then(function (response) {
                     window.localStorage.setItem('token', response.data.data.token)
-                    console.log(response.data.data.token)
-                    return <Redirect to={'/auth/signup'}/>
+                    props.history.push('/messenger')
                 })
                 .catch(function (error) {
-                    let errorNumber = error.message.replace(/^\D+/g, '');
 
+                    let errorNumber = error.message.replace(/^\D+/g, '');
                     switch (errorNumber) {
                         case '400':
-                            setError('400')
+                            removeAllToasts()
+                            addToast('Complete fields!', {
+                                appearance: 'error',
+                                autoDismiss: true,
+                            })
                             break
                         case '401':
-                            setError('401')
+                            removeAllToasts()
+                            addToast('Email or password is wrong!', {
+                                appearance: 'error',
+                                autoDismiss: true,
+                            })
                             break
                         default:
-                            setError(errorNumber)
+                            removeAllToasts()
+                            addToast('Try agaiin!', {
+                                appearance: 'error',
+                                autoDismiss: true,
+                            })
                     }
                 });
-        } else {
-            setError(validate)
-            addToast(validate, {
-                appearance: 'error',
-                autoDismiss: true,
-            })
         }
     }
 
@@ -78,7 +82,7 @@ function Login(props) {
                     </div>
 
                     <div className={'loginInputs'}>
-                        <label>{error}</label>
+
                         <CustomiseInput
                             name={'email'}
                             type={'email'}
@@ -124,4 +128,4 @@ function Login(props) {
     )
 }
 
-export default Login
+export default withRouter(Login)
