@@ -7,6 +7,7 @@ import {createStore, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
 import Reducer from './Components/reducer/reducer'
 import logger from 'redux-logger'
+import {ToastProvider} from 'react-toast-notifications'
 
 const store = createStore(
     Reducer,
@@ -14,7 +15,9 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-        <App/>
+        <ToastProvider placement="bottom-right">
+            <App/>
+        </ToastProvider>
     </Provider>
     , document.getElementById('root'));
 

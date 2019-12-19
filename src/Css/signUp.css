@@ -3,3 +3,11 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+@media screen and (max-width: 660px) {
+    .Container .leftSide {
+        background-image: url("../image/loginimage2.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+}

@@ -1,8 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import validate from 'validate.js'
+import React from 'react';
 import {Input, Icon} from "antd";
 import '../../Css/LoginAndRegister.css'
-import handleValidation from "../validation/validateFunction";
+import handleValidation from '../validation/ValidateFunction'
 
 /*
 * this function validate your TextField
@@ -14,44 +13,9 @@ function CustomiseInput(props) {
 
     /* state for errors */
     const [fieldError, setFieldError] = React.useState({
-        EmailError: '',
-        PasswordError: '',
+        Error: '',
         visibility: 'none',
     });
-
-    let myVar = {}
-
-    useEffect(() => {
-        myVar = fieldError
-        //console.log('MyVar:::',myVar)
-    })
-
-    /* show/hide error text
-    /* result is a value(an error or undefined) that taken from 'handlevalidation' function
-    */
-    function showHideError(result, fieldName) {
-        if (result === undefined) {
-            setFieldError({...fieldError, error: '', visibility: 'none'})
-        } else {
-
-            if (fieldName === 'email') {
-                let EmailLenth = result.EmailValidation[0].length
-                setFieldError({
-                    ...fieldError,
-                    EmailError: result.EmailValidation[0].slice(16, EmailLenth),
-                    visibility: 'block'
-                })
-            } else {
-                let PasswordLenth = result.PasswordValidation[0].length
-                setFieldError({
-                    ...fieldError,
-                    PasswordError: result.PasswordValidation[0].slice(20, PasswordLenth),
-                    visibility: 'block'
-                })
-            }
-        }
-
-    }
 
     return (
         <div className={'InputLabelContainer'}>
@@ -68,11 +32,19 @@ function CustomiseInput(props) {
                     onBlur={(event) => {
                         let result = handleValidation(event.target.name, event.target.value)
 
-                        /* show/hide errors for textFields */
-                        showHideError(result, event.target.name)
+                        if (result !== null) {
+                            setFieldError({
+                                ...fieldError,
+                                Error: result,
+                                visibility: 'block'
+                            })
 
-                        //send error to login page
-                        props.onBlur(fieldError)
+                        } else {
+                            setFieldError({
+                                ...fieldError,
+                                visibility: 'none'
+                            })
+                        }
 
                     }}
                 />
@@ -80,9 +52,10 @@ function CustomiseInput(props) {
 
 
             {/* error section */}
-            <div className={'labelErrorLogin'} style={{textAlign: 'right', marginBottom: '1vh', fontSize: '1vw', display: fieldError.visibility}}>
+            <div className={'labelErrorLogin'}
+                 style={{textAlign: 'right', marginBottom: '1vh', fontSize: '0.8vw', display: fieldError.visibility}}>
                 <span>
-                    {fieldError.EmailError + fieldError.PasswordError}
+                    {fieldError.Error}
                 </span>
             </div>
         </div>

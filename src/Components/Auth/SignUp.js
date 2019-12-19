@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import CustomiseInput from '../Inputs/CustomiseInput'
-import CustomiseButton from "../Inputs/CustomiseButton";
 import '../../Css/LoginAndRegister.css'
 import '../../Css/signUp.css'
 import axios from 'axios'
 import {Link, Redirect} from 'react-router-dom'
+import {createBrowserHistory} from 'history';
 import {Button} from "antd";
-import '../../Css/linkButton.css'
 
 window.document.title = 'Allo SignUp'
+const history = createBrowserHistory()
 
 function SignUp(props) {
 
@@ -35,10 +35,10 @@ function SignUp(props) {
 
                 switch (errorNumber) {
                     case '400':
-                        setError('Email or Password is wrong!')
+                        setError('400')
                         break
                     case '401':
-                        setError('Email or Password is wrong!')
+                        setError('401')
                         break
                     default:
                         setError('try again!')
@@ -51,14 +51,6 @@ function SignUp(props) {
         setField({...field, [InputName]: value})
     }
 
-    function SendErrorsToRedux(error) {
-        //console.log('Login::::',error)
-        //props.dispatch(SendErrorFromTextFieldAction(error))
-    }
-
-    function myred() {
-        return (<Redirect to="/" />)
-    }
 
     return (
         <React.Fragment>
@@ -79,8 +71,7 @@ function SignUp(props) {
                             type={'email'}
                             placeHolder={'Enter your Email'}
                             icon={'mail'}
-                            onChange={(value, InputName) => getDataFromCustomiseInput(value, InputName)} //get dada and save it on state
-                            onBlur={(error) => SendErrorsToRedux(error)} //check field error onblur
+                            onChange={(value, InputName) => getDataFromCustomiseInput(value, InputName)} //get data and save it on state
                         />
 
                         <CustomiseInput
@@ -88,29 +79,34 @@ function SignUp(props) {
                             type={'password'}
                             placeHolder={'Enter your password'}
                             icon={'lock'}
-                            onChange={(value, InputName) => getDataFromCustomiseInput(value, InputName)} //get dada and save it on state
-                            onBlur={(error) => SendErrorsToRedux(error)} //check field error onblur
+                            onChange={(value, InputName) => getDataFromCustomiseInput(value, InputName)} //get data and save it on state
                         />
 
-                        <div style={{textAlign: 'right'}}>
-                            <a href={'#'}>Forgot Password?</a>
-                        </div>
+                        <CustomiseInput
+                            name={'confirmPassword'}
+                            type={'password'}
+                            placeHolder={'re-Enter your password'}
+                            icon={'lock'}
+                            onChange={(value, InputName) => getDataFromCustomiseInput(value, InputName)} //get data and save it on state
+                        />
 
                     </div>
 
                     <div className={'loginButtonOrSignUp'}>
                         <div>
 
-                            <Link
+                            <Button
                                 className={'btnPrimary'}
                                 onClick={() => doSignUp()}>
-                                {'SIGNUP'}</Link>
+                                {'SIGNUP'}
+                            </Button>
                         </div>
                         <div>
                             <Link
-                                className={'btnDefault'}
-                                onClick={() => myred()}>
-                                {'SignIn'}</Link>
+                                to={'/auth/signin'}
+                                className={'btnDefault'}>
+                                {'SIGNIN'}
+                            </Link>
                         </div>
                     </div>
 

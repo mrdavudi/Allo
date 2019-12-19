@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import CustomiseInput from '../Inputs/CustomiseInput'
-import CustomiseButton from "../Inputs/CustomiseButton";
 import '../../Css/LoginAndRegister.css'
 import '../../Css/login.css'
 import axios from 'axios'
-import {Redirect} from 'react-router-dom'
-import validateFunction from "../validation/validateFunction";
+import {Link, Redirect} from 'react-router-dom'
+import validateFunction from "../validation/ValidateFunction";
+import {Button} from "antd";
+import {ToastProvider, useToasts} from 'react-toast-notifications'
 
 window.document.title = 'Allo login'
 
@@ -19,11 +20,13 @@ function Login(props) {
 
     const [error, setError] = useState('')
 
+    const {addToast} = useToasts()
 
     function doLogin() {
+        let Emailvalidate = validateFunction('email', field.email)
         let validate = validateFunction('email', field.email)
 
-        if (validate === undefined || validate === '' || validate === []) {
+        if (validate === null) {
 
             axios.post('http://click.7grid.ir/auth/signin/', {
                 email: field.email,
@@ -39,28 +42,27 @@ function Login(props) {
 
                     switch (errorNumber) {
                         case '400':
-                            setError('Email or Password is wrong!')
+                            setError('400')
                             break
                         case '401':
-                            setError('Email or Password is wrong!')
+                            setError('401')
                             break
                         default:
-                            setError('try again!')
+                            setError(errorNumber)
                     }
                 });
         } else {
-            setError('Complete fields')
+            setError(validate)
+            addToast(validate, {
+                appearance: 'error',
+                autoDismiss: true,
+            })
         }
     }
 
 
     function getDataFromCustomiseInput(value, InputName) {
         setField({...field, [InputName]: value})
-    }
-
-    function SendErrorsToRedux(error) {
-        //console.log('Login::::',error)
-        //props.dispatch(SendErrorFromTextFieldAction(error))
     }
 
     return (
@@ -83,7 +85,6 @@ function Login(props) {
                             placeHolder={'Enter your Email'}
                             icon={'mail'}
                             onChange={(value, InputName) => getDataFromCustomiseInput(value, InputName)} //get dada and save it on state
-                            onBlur={(error) => SendErrorsToRedux(error)} //check field error onblur
                         />
 
                         <CustomiseInput
@@ -92,7 +93,6 @@ function Login(props) {
                             placeHolder={'Enter your password'}
                             icon={'lock'}
                             onChange={(value, InputName) => getDataFromCustomiseInput(value, InputName)} //get dada and save it on state
-                            onBlur={(error) => SendErrorsToRedux(error)} //check field error onblur
                         />
 
                         <div style={{textAlign: 'right'}}>
@@ -103,14 +103,18 @@ function Login(props) {
 
                     <div className={'loginButtonOrSignUp'}>
                         <div>
-                            <CustomiseButton
-                                type={'primary'}
-                                value={'SIGNIN'}
-                                onClick={() => doLogin()}
-                            />
+                            <Button
+                                className={'btnPrimary'}
+                                onClick={() => doLogin()}>
+                                {'SIGNIN'}
+                            </Button>
                         </div>
                         <div>
-                            <CustomiseButton value={'SIGNUP'}/>
+                            <Link
+                                to={'/auth/signup'}
+                                className={'btnDefault'}>
+                                {'SIGNUP'}
+                            </Link>
                         </div>
                     </div>
 

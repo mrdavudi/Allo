@@ -1,9 +1,11 @@
+
 .btnPrimary {
     border: 1px solid #1890FF;
     border-radius: 5px;
     background-color: #1890FF;
     padding: 7px 15px;
     color: #ffffff;
+    line-height: 7px;
     transition: background-color 0.3s;
 }
 
@@ -22,6 +24,7 @@
     background-color: #FF4D4F;
     padding: 7px 15px;
     color: #ffffff;
+    line-height: 7px;
     transition: background-color 0.3s;
 }
 
@@ -41,6 +44,7 @@
     background-color: #ffffff;
     padding: 7px 15px;
     color: #888888;
+    line-height: 7px;
     transition: background-color 0.3s;
 }
 
