@@ -4,7 +4,9 @@ import CustomiseButton from "../Inputs/CustomiseButton";
 import '../../Css/LoginAndRegister.css'
 import '../../Css/signUp.css'
 import axios from 'axios'
-import {Redirect} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
+import {Button} from "antd";
+import '../../Css/linkButton.css'
 
 window.document.title = 'Allo SignUp'
 
@@ -54,6 +56,10 @@ function SignUp(props) {
         //props.dispatch(SendErrorFromTextFieldAction(error))
     }
 
+    function myred() {
+        return (<Redirect to="/" />)
+    }
+
     return (
         <React.Fragment>
             <div className={'Container'}>
@@ -94,16 +100,20 @@ function SignUp(props) {
 
                     <div className={'loginButtonOrSignUp'}>
                         <div>
-                            <CustomiseButton
-                                type={'primary'}
-                                value={'SIGNUP'}
-                                onClick={() => doSignUp()}
-                            />
+
+                            <Link
+                                className={'btnPrimary'}
+                                onClick={() => doSignUp()}>
+                                {'SIGNUP'}</Link>
                         </div>
                         <div>
-                            <CustomiseButton value={'SIGNIN'} />
+                            <Link
+                                className={'btnDefault'}
+                                onClick={() => myred()}>
+                                {'SignIn'}</Link>
                         </div>
                     </div>
+
 
                 </div>
             </div>

@@ -1,0 +1,54 @@
+.btnPrimary {
+    border: 1px solid #1890FF;
+    border-radius: 5px;
+    background-color: #1890FF;
+    padding: 7px 15px;
+    color: #ffffff;
+    transition: background-color 0.3s;
+}
+
+.btnPrimary:hover {
+    background-color: #42A5FF;
+    color: #ffffff;
+}
+
+.btnPrimary:active {
+    background-color: #6FBAFF;
+}
+
+.btnDanger {
+    border: 1px solid #FF4D4F;
+    border-radius: 5px;
+    background-color: #FF4D4F;
+    padding: 7px 15px;
+    color: #ffffff;
+    transition: background-color 0.3s;
+}
+
+.btnDanger:hover {
+    background-color: #FF6F6F;
+    color: #ffffff;
+}
+
+.btnDanger:active {
+    background-color: #FF9797;
+}
+
+
+.btnDefault {
+    border: 1px solid #E1E1E1;
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding: 7px 15px;
+    color: #888888;
+    transition: background-color 0.3s;
+}
+
+.btnDefault:hover {
+    background-color: #E9E9E9;
+    color: #888888;
+}
+
+.btnDefault:active {
+    background-color: #DDDDDD;
+}
