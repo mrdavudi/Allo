@@ -68,3 +68,43 @@ body {
     align-items: center;
     width: 15vw;
 }
+
+@media screen and (max-width: 975px) {
+
+    .container .rightSide {
+        background-image: none;
+        flex-grow: 0;
+        width: 0;
+    }
+    .container .leftSide {
+        flex-grow: 1;
+        width: 70vw;
+
+    }
+    .container .leftSide .logo{
+        flex-grow: 2;
+        background-image: url("../image/mainpage3.png");
+        background-size: 100% 100%;
+        width: 70vw;
+    }
+
+    .container .leftSide .description{
+        width: 70vw;
+        flex-grow: 1;
+        justify-content: flex-start;
+        padding-right: 10px;
+    }
+
+    .container .leftSide .description .LoginSignUpBtn{
+        justify-content: space-evenly;
+        align-items: center;
+        width: 70vw;
+        height: 10vw;
+    }
+
+    @media screen and (max-width: 660px) {
+        .container{
+            font-size: 2vw;
+        }
+    }
+}
