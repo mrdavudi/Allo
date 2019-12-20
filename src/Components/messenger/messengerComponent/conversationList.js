@@ -1,4 +1,5 @@
 import React from "react";
+import ConversationItem from "./ConversationItem";
 
 const conversations = [
     {
@@ -23,9 +24,10 @@ function ConversationList() {
     return (
         <div className={'ConversationListContainer'}>
             {conversations.map((value, index) => {
-
+                return (
+                    <ConversationItem image={value.image}/>
+                )
             })}
-
         </div>
     )
 }

@@ -7,13 +7,13 @@ function Messenger() {
         <div className={'AllElementMessenger'}>
             <div className={'MessengerContainer'}>
                 <div className={'leftSideMessenger'}>
-                    <div className={'header'}></div>
-                    <div className={'content'}></div>
-                    <div className={'footer'}></div>
+                    <ConversationList/>
                 </div>
 
                 <div className={'rightSideMessenger'}>
-                    <ConversationList/>
+                    <div className={'header'}></div>
+                    <div className={'content'}></div>
+                    <div className={'footer'}></div>
                 </div>
             </div>
         </div>
