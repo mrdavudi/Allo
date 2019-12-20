@@ -1,0 +1,40 @@
+.AllElementMessenger{
+    width: 100vw;
+    height: 100vh;
+    background-color: #c6cbef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.MessengerContainer{
+    background-color: #ffffff;
+    width: 80vw;
+    height: 80vh;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.AllElementMessenger .MessengerContainer .rightSideMessenger{
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-start;
+    align-items: center;
+    width: 60vw;
+    height: 80vh;
+    border-radius: 0 15px 15px 0;
+}
+
+.AllElementMessenger .MessengerContainer .leftSideMessenger{
+    display: flex;
+    flex-grow: 3;
+    justify-content: flex-start;
+    align-items: center;
+    width: 20vw;
+    height: 80vh;
+    border-right: 0.1vw solid #e3e7f1;
+    border-radius: 15px 0 0 15px;
+}

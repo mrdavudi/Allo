@@ -21,7 +21,10 @@ const conversations = [
 
 function ConversationList() {
     return (
-        <div>
+        <div className={'ConversationListContainer'}>
+            {conversations.map((value, index) => {
+
+            })}
 
         </div>
     )
