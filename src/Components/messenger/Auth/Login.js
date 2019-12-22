@@ -32,6 +32,7 @@ function Login(props) {
             })
                 .then(function (response) {
                     window.localStorage.setItem('token', response.data.data.token)
+                    window.localStorage.setItem('userId', response.data.data.profile.id)
                     props.history.push('/messenger')
                 })
                 .catch(function (error) {
@@ -106,7 +107,7 @@ function Login(props) {
                         />
 
                         <div style={{textAlign: 'right'}}>
-                            <a href={'#'}>Forgot Password?</a>
+                            <Link to={''}>Forgot password?</Link>
                         </div>
 
                     </div>

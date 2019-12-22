@@ -20,7 +20,7 @@
 
 .AllElementMessenger .MessengerContainer .rightSideMessenger{
     display: flex;
-    flex-grow: 1;
+    flex-grow: 3;
     justify-content: flex-start;
     align-items: center;
     width: 60vw;
@@ -30,10 +30,9 @@
 
 .AllElementMessenger .MessengerContainer .leftSideMessenger{
     display: flex;
-    flex-grow: 3;
+    flex-grow: 1;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 10px 10px;
     width: 20vw;
     height: 80vh;
     border-right: 0.1vw solid #e3e7f1;

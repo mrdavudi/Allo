@@ -20,7 +20,7 @@ function SignUp(props) {
         confirmPassword: ''
     });
 
-    const [error, setError] = useState('')
+    const [error] = useState('')
 
     const {addToast, removeAllToasts} = useToasts()
 
@@ -38,6 +38,7 @@ function SignUp(props) {
             })
                 .then((response) => {
                     window.localStorage.setItem('token', response.data.token)
+                    window.localStorage.setItem('userId', response.data.id)
                     props.history.push('/messenger')
                 })
                 .catch((error) => {
