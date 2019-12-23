@@ -1,11 +1,16 @@
 import React from "react";
+import {connect} from 'react-redux'
 
-function Header() {
+function Header(props) {
     return (
         <React.Fragment>
-
+            <h3>{props.userEmail}</h3>
         </React.Fragment>
     )
 }
 
-export default Header
+
+const mapStateToProps = (state) => ({
+    userEmail: state.userEmail
+})
+export default connect(mapStateToProps)(Header)

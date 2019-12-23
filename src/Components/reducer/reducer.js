@@ -1,18 +1,19 @@
 const init = {
-    TextData: {},
+    userEmail: '',
+    messageList: [],
 };
 
 const MyReducer = (state = init, action) => {
     switch (action.type) {
-        case 'Get_INPUT_DATA_FROM_TEXT':
+        case 'SAVE_EMAIL':
             return {
                 ...state,
-                TextData: action.payload
+                userEmail: action.payload
             };
-        case 'COMPUTE_RANDOM_CARD':
+        case 'CREATE_CONVERSATION':
             return {
                 ...state,
-                TextData: action.payload
+                messageList: action.payload
             };
         default:
             return state

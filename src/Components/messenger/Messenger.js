@@ -2,6 +2,8 @@ import React from "react";
 import ConversationList from "./messengerComponent/conversationList";
 import '../../Css/messenger.css'
 import axios from "axios";
+import Header from '../messenger/messengerComponent/header'
+import Content from "./messengerComponent/content";
 
 function send() {
     let data = new FormData()
@@ -13,21 +15,6 @@ function send() {
         .then(function (response) {
             console.log('Send:::', response);
 
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-}
-
-function createConversation() {
-
-    let data = new FormData()
-    data.append('token', window.localStorage.getItem('token'))
-    data.append('user_id', 64)
-
-    axios.post('http://click.7grid.ir/conversation/', data)
-        .then(function (response) {
-            console.log(response);
         })
         .catch(function (error) {
             console.log(error);
@@ -61,13 +48,10 @@ function Messenger() {
 
                 <div className={'rightSideMessenger'}>
                     <div className={'header'}>
-                        <h3>hasan123@Gmail.com</h3>
+                        <Header/>
                     </div>
                     <div className={'content'}>
-                        {/*<button onClick={() => send()}>send</button>
-
-                        <button onClick={() => createConversation()}>create</button>
-                        <button onClick={() => getConversation()}>getconversation</button>*/}
+                        <Content/>
                     </div>
                     <div className={'footer'}></div>
                 </div>
