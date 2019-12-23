@@ -4,38 +4,55 @@ import axios from 'axios'
 import CustomiseInput from "../../Inputs/CustomiseInput";
 import '../../../Css/conversation.css'
 
-/*const conversations = [
-    {
-        id: 1,
-        name: 'ali',
-        latest_message: 'Have a good time have a good time',
-        unseen: 500,
-        image: 'https://www.6sigma.us/wp-content/uploads/2017/05/bill-gates-jpg-768x516.jpg',
-        email: 'ali123@gmail.com',
-    },
-    {
-        id: 2,
-        name: 'reza',
-        latest_message: 'goodby',
-        unseen: 5,
-        image: 'https://cdn2.hubspot.net/hubfs/1716276/API/celebrities/steve_jobs.jpg',
-        email: 'reza123@gmail.com',
-    }
-]*/
-
 function ConversationList() {
 
-    /* state for TextFields */
-    const [field, setField] = useState({
-        email: '',
-        password: ''
-    });
 
-    function getDataFromCustomiseInput(value, InputName) {
-        setField({...field, [InputName]: value})
+    const [list, setList] = useState({
+        searchList: [],
+        conversationList: []
+    })
+
+    const [field, setField] = useState(undefined)
+
+    const interval = setInterval(() => {
+            if (field === undefined)
+                getConversationList()
+        }
+        , 3000)
+
+
+    function searchContacts(value, InputName) {
+        console.log('Value:::', value)
+
+        setField(value)
+        clearInterval(interval)
+
+        if (value && value !== '') {
+            let data = new FormData()
+            data.append('token', window.localStorage.getItem('token'))
+            data.append('query', value)
+            data.append('size', 4)
+
+            axios.post('http://click.7grid.ir/explore/search/contacts/', data)
+                .then((response) => {
+
+                    console.log(response.data.data.users)
+                    setList({
+                        ...list,
+                        searchList: response.data.data.users
+                    })
+
+                    clearInterval(interval)
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        } else {
+            setField(undefined)
+            clearInterval(interval)
+        }
     }
-
-    const interval = setInterval(getConversationList, 3000)
 
     function getConversationList() {
         console.log('hello')
@@ -45,54 +62,66 @@ function ConversationList() {
             }
         })
             .then(function (response) {
-                setConversationList(response.data.data.conversation_details)
+                //console.log(response.data.data.conversation_details)
+
+                setList({...list, conversationList: response.data.data.conversation_details})
                 clearInterval(interval)
+
             })
             .catch(function (error) {
                 console.log(error);
             })
     }
 
-    const [conversationList, setConversationList] = useState([])
 
-
-    useEffect(()=>{
-        getConversationList()
-    },[])
+    //load conversation list on start component
+    useEffect(() => {
+        if (field === undefined)
+            getConversationList()
+    }, [])
 
     return (
         <div className={'ConversationListContainer'}>
             <div className={'searchBoxContainer'}>
                 <div className={'searchInput'}>
                     <CustomiseInput
-                        name={'search'}
+                        name={'searchField'}
                         type={'text'}
                         placeHolder={'Search'}
                         icon={'search'}
-                        onChange={(value, InputName) => getDataFromCustomiseInput(value, InputName)} //get dada and save it on state
+                        onChange={(value, InputName) => searchContacts(value, InputName)} //get dada and save it on state
                     />
                 </div>
             </div>
             <div className={'ConversationItemContainer'}>
                 {
-                    conversationList.map((value) => {
+                    list.conversationList.map((value) => {
 
-                        /*get User info*/
-                        let senderInfo = value.users.filter(user => user.id !== parseInt(window.localStorage.getItem('userId')))[0]
-                        let unseenMessage = value.unseen_messages[window.localStorage.getItem('userId')]
+                        if (field === undefined) {
+                            /*get User info*/
+                            let senderInfo = value.users.filter(user => user.id !== parseInt(window.localStorage.getItem('userId')))[0]
+                            let unseenMessage = value.unseen_messages[window.localStorage.getItem('userId')]
 
-                        return (
-                            <React.Fragment key={senderInfo.id}>
-                                <ConversationItem
-                                    key={senderInfo.id}
-                                    id={senderInfo.id}
-                                    email={senderInfo.email}
-                                    unseenMessage={unseenMessage}
-                                    image={senderInfo.avatar_url}
-                                />
-                            </React.Fragment>
-                        )
+                            return (
+                                <React.Fragment key={senderInfo.id}>
+                                    <ConversationItem
+                                        key={senderInfo.id}
+                                        id={senderInfo.id}
+                                        email={senderInfo.email}
+                                        unseenMessage={unseenMessage}
+                                        image={senderInfo.avatar_url}
+                                    />
+                                </React.Fragment>
+                            )
+                        } else if (field) {
+                            return (
+                                <React.Fragment>
+                                    <label>dddd</label>
+                                </React.Fragment>
+                            )
+                        }
                     })
+
 
                 }
             </div>

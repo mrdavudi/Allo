@@ -19,7 +19,7 @@ function ConversationItem(props) {
             if (exists) {
                 setImgSrc(props.image)
             } else {
-                setImgSrc(require('../../../image/defaultProfilePhoto.png'))
+                setImgSrc(require('../../../image/defaultProfilePhoto2.png'))
             }
         });
 
