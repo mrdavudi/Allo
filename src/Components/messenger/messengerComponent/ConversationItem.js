@@ -27,7 +27,7 @@ function ConversationItem(props) {
 
     if (props.email) {
         return (
-            <div key={props.id} className={'ConversationItem'}>
+            <div key={props.id} className={'ConversationItem'} >
                 <div className={'leftSideItem'}>
                     <img src={imgSrc} alt={'PF'} style={{width: '4vw', height: '4vw'}}/>
                 </div>

@@ -60,12 +60,14 @@ function Messenger() {
                 </div>
 
                 <div className={'rightSideMessenger'}>
-                    <div className={'header'}></div>
+                    <div className={'header'}>
+                        <h3>hasan123@Gmail.com</h3>
+                    </div>
                     <div className={'content'}>
-                        <button onClick={() => send()}>send</button>
+                        {/*<button onClick={() => send()}>send</button>
 
                         <button onClick={() => createConversation()}>create</button>
-                        <button onClick={() => getConversation()}>getconversation</button>
+                        <button onClick={() => getConversation()}>getconversation</button>*/}
                     </div>
                     <div className={'footer'}></div>
                 </div>

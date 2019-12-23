@@ -22,7 +22,6 @@ function ConversationList() {
 
 
     function searchContacts(value, InputName) {
-        console.log('Value:::', value)
 
         setField(value)
         clearInterval(interval)
@@ -31,7 +30,7 @@ function ConversationList() {
             let data = new FormData()
             data.append('token', window.localStorage.getItem('token'))
             data.append('query', value)
-            data.append('size', 4)
+            data.append('size', 100)
 
             axios.post('http://click.7grid.ir/explore/search/contacts/', data)
                 .then((response) => {
@@ -64,7 +63,11 @@ function ConversationList() {
             .then(function (response) {
                 //console.log(response.data.data.conversation_details)
 
-                setList({...list, conversationList: response.data.data.conversation_details})
+                setList({
+                    ...list,
+                    conversationList: response.data.data.conversation_details
+                })
+
                 clearInterval(interval)
 
             })
@@ -81,6 +84,7 @@ function ConversationList() {
     }, [])
 
     return (
+
         <div className={'ConversationListContainer'}>
             <div className={'searchBoxContainer'}>
                 <div className={'searchInput'}>
@@ -95,37 +99,49 @@ function ConversationList() {
             </div>
             <div className={'ConversationItemContainer'}>
                 {
+                    field === undefined &&
                     list.conversationList.map((value) => {
-
                         if (field === undefined) {
+
                             /*get User info*/
                             let senderInfo = value.users.filter(user => user.id !== parseInt(window.localStorage.getItem('userId')))[0]
                             let unseenMessage = value.unseen_messages[window.localStorage.getItem('userId')]
 
                             return (
-                                <React.Fragment key={senderInfo.id}>
-                                    <ConversationItem
-                                        key={senderInfo.id}
-                                        id={senderInfo.id}
-                                        email={senderInfo.email}
-                                        unseenMessage={unseenMessage}
-                                        image={senderInfo.avatar_url}
-                                    />
-                                </React.Fragment>
-                            )
-                        } else if (field) {
-                            return (
-                                <React.Fragment>
-                                    <label>dddd</label>
-                                </React.Fragment>
+                                <ConversationItem
+                                    key={senderInfo.id}
+                                    id={senderInfo.id}
+                                    email={senderInfo.email}
+                                    unseenMessage={unseenMessage}
+                                    image={senderInfo.avatar_url}
+                                />
                             )
                         }
+
                     })
+                }
+                {
+                    field !== undefined &&
+                    list.searchList.map((value) => {
+                        //console.log('Value:::',value)
+
+                        return (
+                            <ConversationItem
+                                key={value.id}
+                                id={value.id}
+                                email={value.email}
+                                unseenMessage={''}
+                                image={value.avatar_url}
+                            />
+
+                        )
 
 
+                    })
                 }
             </div>
         </div>
+
     )
 }
 

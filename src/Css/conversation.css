@@ -3,13 +3,14 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    direction: ltr;
+    background: #f6f5f5;
 }
 
 .ConversationListContainer .searchBoxContainer {
     width: 19.9vw;
     height: 8vh;
     display: flex;
-    flex-grow: 1;
     justify-content: center;
     align-items: center;
     border-bottom: 0.1vw solid #e3e7f1;
@@ -26,10 +27,9 @@
 
 .ConversationListContainer .ConversationItemContainer .ConversationItem {
     display: flex;
-    flex-grow: 3;
     justify-content: space-around;
     align-items: center;
-    background-color: #ffffff;
+    background-color: #f6f5f5;
     width: 19.9vw;
     height: 10vh;
     padding: 5px;

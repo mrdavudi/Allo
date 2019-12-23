@@ -1,7 +1,7 @@
 .AllElementMessenger{
     width: 100vw;
     height: 100vh;
-    background-color: #c6cbef;
+    background-color: #f9f6f7;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,16 +16,53 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    box-shadow: 1px 1px 10px #888888;
 }
 
 .AllElementMessenger .MessengerContainer .rightSideMessenger{
     display: flex;
     flex-grow: 3;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 60vw;
+    width: 59vw;
     height: 80vh;
     border-radius: 0 15px 15px 0;
+}
+
+.AllElementMessenger .MessengerContainer .rightSideMessenger .header{
+    display: flex;
+    background: #f6f5f5;
+    width: 59vw;
+    height: 8vh;
+    border-radius: 0 15px 0 0;
+    border-left: 0.1vw solid #e3e7f1;
+    border-bottom: 0.1vw solid #e3e7f1;
+    line-height: 8vh;
+    padding: 0 15px;
+}
+.AllElementMessenger .MessengerContainer .rightSideMessenger .header h1,h2,h3{
+    color: #888888;
+    width: auto;
+}
+
+.AllElementMessenger .MessengerContainer .rightSideMessenger .content{
+    display: flex;
+    flex-grow: 3.85;
+    /*background: #f9f6f7;*/
+    background-image: url("../image/contentBack1.jpg");
+    background-size: 40%;
+    width: 59vw;
+
+}
+
+.AllElementMessenger .MessengerContainer .rightSideMessenger .footer{
+    display: flex;
+    flex-grow: 0.1;
+    background-image: url("../image/contentBack1.jpg");
+    width: 59vw;
+    height: 8vh;
+    border-radius: 0 0 15px 0;
 }
 
 .AllElementMessenger .MessengerContainer .leftSideMessenger{
@@ -33,8 +70,10 @@
     flex-grow: 1;
     justify-content: flex-start;
     align-items: flex-start;
-    width: 20vw;
+    width: 21vw;
     height: 80vh;
-    border-right: 0.1vw solid #e3e7f1;
     border-radius: 15px 0 0 15px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    direction: rtl;
 }
