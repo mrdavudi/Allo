@@ -16,12 +16,13 @@
     border-bottom: 0.1vw solid #e3e7f1;
 }
 
-.ConversationListContainer .searchBoxContainer .searchInput{
+.ConversationListContainer .searchBoxContainer .searchInput {
     display: flex;
     justify-content: center;
     width: 19.9vw;
 }
-.ConversationListContainer .searchBoxContainer .searchInput .CustomiseInputClass{
+
+.ConversationListContainer .searchBoxContainer .searchInput .CustomiseInputClass {
     width: 18vw;
 }
 

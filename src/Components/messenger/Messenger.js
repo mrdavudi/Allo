@@ -3,7 +3,7 @@ import ConversationList from "./messengerComponent/conversationList";
 import '../../Css/messenger.css'
 import axios from "axios";
 import Header from '../messenger/messengerComponent/header'
-import Content from "./messengerComponent/content";
+import Content from "./messengerComponent/Messages";
 
 function send() {
     let data = new FormData()

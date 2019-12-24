@@ -1,0 +1,50 @@
+.ContentContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.ContentContainer .messageContainerLeft, .messageContainerRight {
+    width: min-content;
+    height: min-content;
+    padding: 1vw 1vw 0.4vw 1vw;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3vh;
+}
+
+.ContentContainer .messageContainerLeft {
+    background: #F6F6F6;
+}
+
+.ContentContainer .messageContainerRight {
+    margin-right: 1vw;
+    background: #E1FFC7;
+}
+
+.ContentContainer .textMessage {
+    font-size: 1vw;
+    width: 28vw;
+    height: min-content;
+    word-wrap: break-word;
+    text-align: justify;
+}
+
+.ContentContainer .messageContainerRight .textMessage {
+    font-family: 'B Yekan';
+}
+
+.ContentContainer .messageContainerLeft .textMessage {
+    font-family: 'Solway-Regular';
+}
+
+
+.ContentContainer .messageTime {
+    text-align: right;
+    color: #aaaaaa;
+}
+
+.ContentContainer .sender {
+    width: 57vw;
+    direction: rtl;
+}

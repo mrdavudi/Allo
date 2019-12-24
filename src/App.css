@@ -19,6 +19,15 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'BYekan';
+  src: url('BYekan.svg#BYekan') format('svg'),
+  url('BYekan.ttf') format('truetype'),
+  url('BYekan.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html, body {
   height: 100%;
 }
