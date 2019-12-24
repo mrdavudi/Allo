@@ -1,4 +1,4 @@
-.AllElementMessenger{
+.AllElementMessenger {
     width: 100vw;
     height: 100vh;
     background-color: #f9f6f7;
@@ -8,7 +8,7 @@
     font-size: 1vw;
 }
 
-.MessengerContainer{
+.MessengerContainer {
     background-color: #ffffff;
     width: 70vw;
     height: 80vh;
@@ -20,7 +20,7 @@
     box-shadow: 1px 1px 10px #888888;
 }
 
-.AllElementMessenger .MessengerContainer .rightSideMessenger{
+.AllElementMessenger .MessengerContainer .rightSideMessenger {
     display: flex;
     flex-grow: 2;
     flex-direction: column;
@@ -31,7 +31,7 @@
     border-radius: 0 15px 15px 0;
 }
 
-.AllElementMessenger .MessengerContainer .leftSideMessenger{
+.AllElementMessenger .MessengerContainer .leftSideMessenger {
     display: flex;
     flex-grow: 1;
     justify-content: flex-start;
@@ -46,12 +46,12 @@
     background: #f6f5f5;
 }
 
-.AllElementMessenger .MessengerContainer .leftSideMessenger:hover{
+.AllElementMessenger .MessengerContainer .leftSideMessenger:hover {
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
-.AllElementMessenger .MessengerContainer .rightSideMessenger .header{
+.AllElementMessenger .MessengerContainer .rightSideMessenger .header {
     display: flex;
     background: #075E55;
     width: inherit;
@@ -62,22 +62,45 @@
     line-height: 7vh;
     padding: 0 15px;
 }
-.AllElementMessenger .MessengerContainer .rightSideMessenger .header h1,h2,h3{
+
+.AllElementMessenger .MessengerContainer .rightSideMessenger .header h1, h2, h3 {
     color: #ffffff;
     width: auto;
 }
 
-.AllElementMessenger .MessengerContainer .rightSideMessenger .content{
+.AllElementMessenger .MessengerContainer .rightSideMessenger .content {
     display: flex;
     flex-grow: 3.85;
     background-image: url("../image/contentBack1.jpg");
     background-size: 40%;
     width: inherit;
+    position: relative;
     overflow-x: hidden;
     overflow-y: scroll;
 }
 
-.AllElementMessenger .MessengerContainer .rightSideMessenger .footer{
+.AllElementMessenger .MessengerContainer .rightSideMessenger .content .scroll {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3vw;
+    height: 3vw;
+    border-radius: 50vw;
+    background: #F6F6F6;
+    position: fixed;
+    right: 18%;
+    bottom: 17%;
+}
+
+.AllElementMessenger .MessengerContainer .rightSideMessenger .content .scroll a {
+    text-align: center;
+    display: block;
+    width: inherit;
+    color: #888888;
+    font-size: 1.2vw;
+}
+
+.AllElementMessenger .MessengerContainer .rightSideMessenger .footer {
     display: flex;
     flex-grow: 0.1;
     background-image: url("../image/contentBack1.jpg");

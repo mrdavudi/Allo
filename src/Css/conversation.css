@@ -1,8 +1,9 @@
 .ConversationListContainer {
     width: inherit;
+    height: inherit;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     direction: ltr;
     background: #ffffff;
@@ -10,11 +11,11 @@
 
 .ConversationListContainer .searchBoxContainer {
     width: inherit;
-    height: 8vh;
+    min-height: 8vh;
+    max-height: 8vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    /*border-bottom: 1px solid #e3e7f1;*/
     padding-left: 1.1vw;
 }
 

@@ -23,7 +23,6 @@ function CustomiseInput(props) {
                 <Input
                     name={props.name}
                     className={'CustomiseInputClass'}
-                    style={{backgroundColor: 'red'}}
                     type={props.type}
                     placeholder={props.placeHolder}
                     prefix={<Icon type={props.icon} style={{color: 'rgba(0,0,0,.25)'}}/>}

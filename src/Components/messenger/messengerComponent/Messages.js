@@ -2,10 +2,16 @@ import React from "react";
 import {connect} from 'react-redux'
 import {CreateConversation} from '../../action/action'
 import '../../../Css/Messages.css'
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faAngleDoubleDown} from "@fortawesome/free-solid-svg-icons";
 
 function Messages(props) {
     return (
         <div className={'ContentContainer'}>
+
+            <div className={'scroll'}>
+                <a href={'#lastChild'}><FontAwesomeIcon icon={faAngleDoubleDown}/></a>
+            </div>
 
             <div className={'sender'}>
                 <div className={'messageContainerRight'}>
@@ -51,7 +57,7 @@ function Messages(props) {
                 </div>
             </div>
 
-            <div className={'sender'}>
+            <div className={'sender'} id={'lastChild'}>
                 <div className={'messageContainerRight'}>
                     <div className={'textMessage'}>
                         <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.</span>

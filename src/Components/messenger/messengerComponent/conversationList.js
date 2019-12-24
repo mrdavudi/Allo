@@ -5,8 +5,6 @@ import CustomiseInput from "../../Inputs/CustomiseInput";
 import '../../../Css/conversation.css'
 
 function ConversationList() {
-
-
     const [list, setList] = useState({
         searchList: [],
         conversationList: []
@@ -27,15 +25,15 @@ function ConversationList() {
         clearInterval(interval)
 
         if (value && value !== '') {
+
             let data = new FormData()
             data.append('token', window.localStorage.getItem('token'))
             data.append('query', value)
             data.append('size', 100)
 
+
             axios.post('http://click.7grid.ir/explore/search/contacts/', data)
                 .then((response) => {
-
-                    console.log(response.data.data.users)
                     setList({
                         ...list,
                         searchList: response.data.data.users
@@ -79,6 +77,7 @@ function ConversationList() {
 
     //load conversation list on start component
     useEffect(() => {
+
         if (field === undefined)
             getConversationList()
     }, [])
@@ -88,7 +87,6 @@ function ConversationList() {
         <div className={'ConversationListContainer'}>
             <div className={'searchBoxContainer'}>
                 <CustomiseInput
-                    style={{backgroundColor: 'red'}}
                     name={'searchField'}
                     type={'text'}
                     placeHolder={'Search'}
@@ -98,7 +96,7 @@ function ConversationList() {
             </div>
             <div className={'ConversationItemContainer'}>
                 {
-                    field === undefined &&
+                    field === undefined && list.conversationList.length !== 0 &&
                     list.conversationList.map((value) => {
                         if (field === undefined) {
 
@@ -107,6 +105,7 @@ function ConversationList() {
                             let unseenMessage = value.unseen_messages[window.localStorage.getItem('userId')]
 
                             return (
+
                                 <ConversationItem
                                     key={senderInfo.id}
                                     id={senderInfo.id}
@@ -114,6 +113,7 @@ function ConversationList() {
                                     unseenMessage={unseenMessage}
                                     image={senderInfo.avatar_url}
                                 />
+
                             )
                         }
 
@@ -122,19 +122,19 @@ function ConversationList() {
                 {
                     field !== undefined &&
                     list.searchList.map((value) => {
-                        return (
-                            <ConversationItem
-                                key={value.id}
-                                id={value.id}
-                                email={value.email}
-                                unseenMessage={''}
-                                image={value.avatar_url}
-                            />
+                            return (
+                                <
+                                    ConversationItem
+                                    key={value.id}
+                                    id={value.id}
+                                    email={value.email}
+                                    unseenMessage={''}
+                                    image={value.avatar_url}
+                                />
 
-                        )
-
-
-                    })
+                            )
+                        }
+                    )
                 }
             </div>
         </div>
