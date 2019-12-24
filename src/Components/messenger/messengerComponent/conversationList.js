@@ -87,15 +87,14 @@ function ConversationList() {
 
         <div className={'ConversationListContainer'}>
             <div className={'searchBoxContainer'}>
-                <div className={'searchInput'}>
-                    <CustomiseInput
-                        name={'searchField'}
-                        type={'text'}
-                        placeHolder={'Search'}
-                        icon={'search'}
-                        onChange={(value, InputName) => searchContacts(value, InputName)} //get dada and save it on state
-                    />
-                </div>
+                <CustomiseInput
+                    style={{backgroundColor: 'red'}}
+                    name={'searchField'}
+                    type={'text'}
+                    placeHolder={'Search'}
+                    icon={'search'}
+                    onChange={(value, InputName) => searchContacts(value, InputName)} //get dada and save it on state
+                />
             </div>
             <div className={'ConversationItemContainer'}>
                 {
@@ -123,8 +122,6 @@ function ConversationList() {
                 {
                     field !== undefined &&
                     list.searchList.map((value) => {
-                        //console.log('Value:::',value)
-
                         return (
                             <ConversationItem
                                 key={value.id}

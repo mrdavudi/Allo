@@ -5,6 +5,7 @@ import {SaveEmail} from '../../action/action'
 import {CreateConversation} from '../../action/action'
 import {connect} from 'react-redux'
 import axios from "axios";
+import {Avatar, Icon} from "antd";
 
 let imageExists = require('image-exists');
 
@@ -43,11 +44,34 @@ function ConversationItem(props) {
             if (exists) {
                 setImgSrc(props.image)
             } else {
-                setImgSrc(require('../../../image/profile.png'))
+                setImgSrc('none')
             }
         });
 
     }, [])
+
+    //if image is Exist so set image
+    //otherwise set two characters of his name
+    function ImageAvatar() {
+        if (imgSrc === 'none') {
+            return (
+                <Avatar
+                    size={50}
+                    style={{border: '1px solid #aaa'}}
+                >
+                    {props.email.slice(0, 2)}
+                </Avatar>
+            )
+        } else {
+            return (
+                <Avatar
+                    size={50}
+                    src={imgSrc}
+                    style={{border: '1px solid #aaa'}}
+                />
+            )
+        }
+    }
 
     if (props.email) {
         return (
@@ -55,7 +79,9 @@ function ConversationItem(props) {
                  onClick={() => createConversation(props.email, props.id)}>
 
                 <div className={'leftSideItem'}>
-                    <img src={imgSrc} alt={'PF'} style={{width: '4vw', height: '4vw'}}/>
+
+                    {ImageAvatar()}
+
                 </div>
                 <div className={'rightSideItem'}>
                     <div className={'userInfo'}>
@@ -68,7 +94,7 @@ function ConversationItem(props) {
                     <div className={'unseenMessage'}>
                         <Badge
                             count={props.unseenMessage}
-                            style={{backgroundColor: '#075E55',border: '1px solid #075E55'}}>
+                            style={{backgroundColor: '#075E55', border: '1px solid #075E55'}}>
                         </Badge>
                     </div>
                 </div>

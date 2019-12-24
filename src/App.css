@@ -21,9 +21,9 @@
 
 @font-face {
   font-family: 'BYekan';
-  src: url('BYekan.svg#BYekan') format('svg'),
-  url('BYekan.ttf') format('truetype'),
-  url('BYekan.woff') format('woff');
+  src: url('./Fonts/BYekan/BYekan.svg#BYekan') format('svg'),
+  url('./Fonts/BYekan/BYekan.ttf') format('truetype'),
+  url('./Fonts/BYekan/BYekan.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
