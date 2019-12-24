@@ -32,7 +32,7 @@
 
 .AllElementMessenger .MessengerContainer .rightSideMessenger .header{
     display: flex;
-    background: #f6f5f5;
+    background: #075E55;
     width: 59vw;
     height: 8vh;
     border-radius: 0 15px 0 0;
@@ -42,17 +42,17 @@
     padding: 0 15px;
 }
 .AllElementMessenger .MessengerContainer .rightSideMessenger .header h1,h2,h3{
-    color: #888888;
+    color: #ffffff;
     width: auto;
 }
 
 .AllElementMessenger .MessengerContainer .rightSideMessenger .content{
     display: flex;
     flex-grow: 3.85;
-    /*background: #f9f6f7;*/
     background-image: url("../image/contentBack1.jpg");
     background-size: 40%;
     width: 59vw;
+    padding: 20px;
 
 }
 
@@ -73,7 +73,9 @@
     width: 21vw;
     height: 80vh;
     border-radius: 15px 0 0 15px;
+    border-right: 1px solid #bff7d6;
     overflow-y: scroll;
     overflow-x: hidden;
     direction: rtl;
+    background: #f6f5f5;
 }

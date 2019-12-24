@@ -1,0 +1,16 @@
+.messageContainer{
+    background: #E1FFC7;
+    text-align: justify;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.textMessage{
+
+}
+
+.messageTime{
+    text-align: right;
+}

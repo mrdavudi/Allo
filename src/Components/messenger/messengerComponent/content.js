@@ -1,11 +1,26 @@
 import React from "react";
+import {connect} from 'react-redux'
+import {CreateConversation} from '../../action/action'
+import '../../../Css/content.css'
 
-function Content() {
-    return(
+function Content(props) {
+    return (
         <React.Fragment>
-            <label>ddd</label>
+            <div className={'messageContainer'}>
+                <div className={'textMessage'}>
+                    <span>zlirezazlirezazlirezazlirezazlirezazlirezazlirezazlireza</span>
+                </div>
+                <div className={'messageTime'}>
+                    <span>12:19</span>
+                </div>
+            </div>
         </React.Fragment>
     )
 }
 
-export default Content
+
+const mapStateToPropsForMessageList = (state) => ({
+    messageList: state.messageList
+})
+
+export default connect(mapStateToPropsForMessageList)(Content)

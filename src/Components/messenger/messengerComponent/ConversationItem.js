@@ -43,7 +43,7 @@ function ConversationItem(props) {
             if (exists) {
                 setImgSrc(props.image)
             } else {
-                setImgSrc(require('../../../image/defaultProfilePhoto2.png'))
+                setImgSrc(require('../../../image/profile.png'))
             }
         });
 
@@ -68,7 +68,7 @@ function ConversationItem(props) {
                     <div className={'unseenMessage'}>
                         <Badge
                             count={props.unseenMessage}
-                            style={{backgroundColor: '#aaa'}}>
+                            style={{backgroundColor: '#075E55',border: '1px solid #075E55'}}>
                         </Badge>
                     </div>
                 </div>
@@ -82,8 +82,8 @@ const mapDispatchToPropsForSaveEmail = (dispatch) => ({
     dispatch: dispatch
 })
 
-const mapDispatchTopropsForMessageList = (dispatch) => ({
+const mapDispatchToPropsForMessageList = (dispatch) => ({
     dispatch: dispatch
 })
 
-export default connect(mapDispatchToPropsForSaveEmail, mapDispatchTopropsForMessageList)(ConversationItem)
+export default connect(mapDispatchToPropsForSaveEmail, mapDispatchToPropsForMessageList)(ConversationItem)
