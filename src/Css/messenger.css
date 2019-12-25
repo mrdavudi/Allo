@@ -75,8 +75,6 @@
     background-size: 40%;
     width: inherit;
     position: relative;
-    overflow-x: hidden;
-    overflow-y: scroll;
 }
 
 .AllElementMessenger .MessengerContainer .rightSideMessenger .content .scroll {

@@ -1,73 +1,56 @@
 import React from "react";
 import {connect} from 'react-redux'
-import {CreateConversation} from '../../action/action'
 import '../../../Css/Messages.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleDoubleDown} from "@fortawesome/free-solid-svg-icons";
 
 function Messages(props) {
+
     return (
-        <div className={'ContentContainer'}>
+        <div className={'ContentContainer'} id={'ContentContainer'}>
 
-            <div className={'scroll'}>
-                <a href={'#lastChild'}><FontAwesomeIcon icon={faAngleDoubleDown}/></a>
-            </div>
-
-            <div className={'sender'}>
-                <div className={'messageContainerRight'}>
-                    <div className={'textMessage'}>
-                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.</span>
-                    </div>
-                    <div className={'messageTime'}>
-                        <span>12:19</span>
-                    </div>
+            <div style={{position: 'relative', height: 'auto', backgroundColor: 'red'}}>
+                <div className={'scroll'}>
+                    <a href={'#lastChild'}><FontAwesomeIcon icon={faAngleDoubleDown}/></a>
                 </div>
             </div>
 
-            <div className={'receiver'}>
-                <div className={'messageContainerLeft'}>
-                    <div className={'textMessage'}>
-                        <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
-                    </div>
-                    <div className={'messageTime'}>
-                        <span>12:19</span>
-                    </div>
-                </div>
-            </div>
+            {
+                props.messageList.map((messages, index) => {
+                    let senderOrReceiver = '',
+                        rightOrLeftMessage = '',
+                        textDate = '',
+                        lastChildId = ''
 
-            <div className={'receiver'}>
-                <div className={'messageContainerLeft'}>
-                    <div className={'textMessage'}>
-                        <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
-                    </div>
-                    <div className={'messageTime'}>
-                        <span>12:19</span>
-                    </div>
-                </div>
-            </div>
+                    textDate = messages.date.split('T')[1].split(':')
 
-            <div className={'receiver'}>
-                <div className={'messageContainerLeft'}>
-                    <div className={'textMessage'}>
-                        <span>LoremLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recentlyLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
-                    </div>
-                    <div className={'messageTime'}>
-                        <span>12:19</span>
-                    </div>
-                </div>
-            </div>
+                    if (messages.sender.id === window.localStorage.getItem('userId')) {
+                        senderOrReceiver = 'sender'
+                        rightOrLeftMessage = 'messageContainerRight'
 
-            <div className={'sender'} id={'lastChild'}>
-                <div className={'messageContainerRight'}>
-                    <div className={'textMessage'}>
-                        <span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.</span>
-                    </div>
-                    <div className={'messageTime'}>
-                        <span>12:19</span>
-                    </div>
-                </div>
-            </div>
+                    } else {
+                        senderOrReceiver = 'receiver'
+                        rightOrLeftMessage = 'messageContainerLeft'
+                    }
 
+                    if (index === props.messageList.length - 1) {
+                        lastChildId = 'lastChild'
+                    }
+
+                    return (
+                        <div className={senderOrReceiver} key={index} id={lastChildId}>
+                            <div className={rightOrLeftMessage}>
+                                <div className={'textMessage'}>
+                                    <span>{messages.text}</span>
+                                </div>
+                                <div className={'messageTime'}>
+                                    <span>{textDate[0] + ':' + textDate[1]}</span>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })
+            }
 
         </div>
 

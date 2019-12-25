@@ -5,7 +5,7 @@ import {SaveEmail} from '../../action/action'
 import {CreateConversation} from '../../action/action'
 import {connect} from 'react-redux'
 import axios from "axios";
-import {Avatar, Icon} from "antd";
+import {Avatar} from "antd";
 
 let imageExists = require('image-exists');
 

@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import ConversationList from "./messengerComponent/conversationList";
 import '../../Css/messenger.css'
 import axios from "axios";
 import Header from '../messenger/messengerComponent/header'
 import Messages from "./messengerComponent/Messages";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleDoubleDown} from "@fortawesome/free-solid-svg-icons";
+import Footer from "./messengerComponent/footer";
 
 function send() {
     let data = new FormData()
@@ -42,15 +41,6 @@ function getConversation() {
 
 function Messenger() {
 
-    const [scrollContentBehavior, setScrollContentBehavior] = useState('auto')
-
-    useEffect(() => {
-        const scrollHeight1 = document.getElementById('content').scrollHeight
-        document.getElementById('content').scrollTo(0, scrollHeight1)
-        console.log(scrollHeight1)
-        setScrollContentBehavior('smooth')
-    }, [])
-
     return (
         <div className={'AllElementMessenger'}>
             <div className={'MessengerContainer'}>
@@ -63,12 +53,12 @@ function Messenger() {
                         <Header/>
                     </div>
 
-                    <div className={'content'} id={'content'}
-                         style={{scrollBehavior: scrollContentBehavior}}>
-
+                    <div className={'content'} id={'content'}>
                         <Messages/>
                     </div>
-                    <div className={'footer'}></div>
+                    <div className={'footer'}>
+                        <Footer/>
+                    </div>
                 </div>
             </div>
         </div>

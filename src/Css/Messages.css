@@ -2,7 +2,10 @@
     display: flex;
     flex-direction: column;
     width: inherit;
+    height: 65vh;
     padding: 1vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .ContentContainer .messageContainerLeft, .messageContainerRight {
