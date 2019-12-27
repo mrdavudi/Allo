@@ -5,7 +5,14 @@ import Header from '../messenger/messengerComponent/header'
 import Messages from "./messengerComponent/Messages";
 import Footer from "./messengerComponent/footer";
 
-function Messenger() {
+
+function Messenger(props) {
+
+    function isLogin() {
+        if(window.localStorage.getItem('token') !== ''){
+            console.log('aaaa')
+        }
+    }
 
     return (
         <div className={'AllElementMessenger'}>

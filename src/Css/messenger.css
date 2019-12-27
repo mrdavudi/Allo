@@ -51,22 +51,25 @@
     overflow-x: hidden;
 }
 
-.AllElementMessenger .MessengerContainer .rightSideMessenger .header {
+.AllElementMessenger .MessengerContainer .rightSideMessenger .headerContainer,.header {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     background: #075E55;
     width: inherit;
     height: 7vh;
-    border-radius: 0 15px 0 0;
-    border-left: 1px solid #bff7d6;
     border-bottom: 0.1vw solid #e3e7f1;
+    border-radius: 0 10px 0 0;
     line-height: 7vh;
     padding: 0 15px;
+    font-family: 'Solway-Regular';
 }
 
 .AllElementMessenger .MessengerContainer .rightSideMessenger .header h1, h2, h3 {
     color: #ffffff;
     width: auto;
 }
+
 
 .AllElementMessenger .MessengerContainer .rightSideMessenger .content {
     display: flex;

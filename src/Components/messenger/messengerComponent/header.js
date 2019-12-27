@@ -1,11 +1,27 @@
 import React from "react";
 import {connect} from 'react-redux'
+import {Button} from "antd";
+import {withRouter} from "react-router"
+
 
 function Header(props) {
+
+    function doLogOut() {
+        //window.localStorage.removeItem('userId')
+        //window.localStorage.removeItem('token')
+        props.history.push('/auth/signin')
+    }
+
+
     return (
-        <React.Fragment>
-            <h3>{props.userEmail}</h3>
-        </React.Fragment>
+        <div className={'headerContainer'}>
+            <div className={'userEmail'}>
+                <h3>{props.userEmail}</h3>
+            </div>
+            <div className={'logOut'} style={{color: '#fff'}}>
+                <Button onClick={() => doLogOut()} className={'btnDefault'}>LogOut</Button>
+            </div>
+        </div>
     )
 }
 
@@ -13,4 +29,4 @@ function Header(props) {
 const mapStateToProps = (state) => ({
     userEmail: state.userEmail
 })
-export default connect(mapStateToProps)(Header)
+export default connect(mapStateToProps)(withRouter(Header))

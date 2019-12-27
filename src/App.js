@@ -13,7 +13,9 @@ import SignUp from "./Components/messenger/Auth/SignUp";
 import Messenger from "./Components/messenger/Messenger";
 import MainPage from "./Components/messenger/mainPage";
 
+
 function App() {
+
     return (
         <Router>
             <div>
