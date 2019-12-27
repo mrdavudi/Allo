@@ -7,3 +7,8 @@ export const CreateConversation = (messageList) => ({
     payload: messageList
 })
 
+export const sendMessage = (messages) => ({
+    type: 'SEND_MESSAGE',
+    payload: messages
+})
+

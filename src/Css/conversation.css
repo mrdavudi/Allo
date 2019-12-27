@@ -27,7 +27,6 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    /*background-color: #f6f5f5;*/
     background: #ffffff;
     width: 19vw;
     height: 8vh;
@@ -38,10 +37,6 @@
 .ConversationListContainer .ConversationItemContainer .ConversationItem:hover {
     background-color: #f3f3f3;
     cursor: pointer;
-}
-
-.ConversationListContainer .ConversationItemContainer .ConversationItem:active {
-    background-color: #f3f3f3;
 }
 
 .ConversationListContainer .ConversationItemContainer .ConversationItem .leftSideItem {

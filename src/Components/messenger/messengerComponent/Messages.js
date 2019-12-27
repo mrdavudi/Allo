@@ -1,22 +1,56 @@
-import React from "react";
+import React, {useState, useEffect, useRef} from "react";
 import {connect} from 'react-redux'
 import '../../../Css/Messages.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleDoubleDown} from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 function Messages(props) {
+
+    const [messageList, setMessageList] = useState([])
+
+    const interval = setInterval(() => {
+            getMessageListUpdate()
+        }
+        , 2000)
+
+
+    function getMessageListUpdate() {
+        let data = new FormData()
+        data.append('token', window.localStorage.getItem('token'))
+        data.append('conversation_id', window.localStorage.getItem('conversationId'))
+        data.append('size', '40')
+        data.append('date', Math.round(new Date() / 1000))
+
+        axios.post('http://click.7grid.ir/conversation/details/', data
+        )
+            .then(function (response) {
+                setMessageList(response.data.data.messages)
+                clearInterval(interval)
+
+            })
+            .catch(function (error) {
+                console.log('GetMessageFalse:::', error);
+            });
+    }
+
+    useEffect(() => {
+        setMessageList(props.messageList)
+        clearInterval(interval)
+    }, [])
 
     return (
         <div className={'ContentContainer'} id={'ContentContainer'}>
 
-            <div style={{position: 'relative', height: 'auto', backgroundColor: 'red'}}>
+            <div style={{position: 'relative', height: 'auto'}}>
                 <div className={'scroll'}>
                     <a href={'#lastChild'}><FontAwesomeIcon icon={faAngleDoubleDown}/></a>
                 </div>
             </div>
 
             {
-                props.messageList.map((messages, index) => {
+                messageList &&
+                messageList.map((messages, index) => {
                     let senderOrReceiver = '',
                         rightOrLeftMessage = '',
                         textDate = '',
@@ -24,7 +58,7 @@ function Messages(props) {
 
                     textDate = messages.date.split('T')[1].split(':')
 
-                    if (messages.sender.id === window.localStorage.getItem('userId')) {
+                    if (messages.sender.id === parseInt(window.localStorage.getItem('userId'))) {
                         senderOrReceiver = 'sender'
                         rightOrLeftMessage = 'messageContainerRight'
 
@@ -33,7 +67,8 @@ function Messages(props) {
                         rightOrLeftMessage = 'messageContainerLeft'
                     }
 
-                    if (index === props.messageList.length - 1) {
+
+                    if (index === messageList.length - 1) {
                         lastChildId = 'lastChild'
                     }
 
@@ -63,4 +98,8 @@ const mapStateToPropsForMessageList = (state) => ({
     messageList: state.messageList
 })
 
-export default connect(mapStateToPropsForMessageList)(Messages)
+const mapStateToPropsForGetMessagesFromFooter = (state) => ({
+    messagesFooter: state.messagesFooter
+})
+
+export default connect(mapStateToPropsForMessageList, mapStateToPropsForGetMessagesFromFooter)(Messages)

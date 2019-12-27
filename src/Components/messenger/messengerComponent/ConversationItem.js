@@ -25,12 +25,31 @@ function ConversationItem(props) {
 
         axios.post('http://click.7grid.ir/conversation/', data)
             .then(function (response) {
-                console.log(response.data.data.messages);
+                window.localStorage.setItem('conversationId', response.data.data.conversation_id)
                 props.dispatch(CreateConversation(response.data.data.messages))
+
+                /*//Seen message***********************************
+
+                let data = new FormData()
+                data.append('token', window.localStorage.getItem('token'))
+                data.append('conversation_id', response.data.data.conversation_id)
+
+                axios.post('https://api.paywith.click/conversation/seen/', data)
+                    .then(function (response) {
+                        console.log('responseSeen::', response)
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+                //seen message ************************************/
+
             })
             .catch(function (error) {
                 console.log(error);
             });
+
+
     }
 
 

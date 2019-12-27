@@ -1,0 +1,26 @@
+.footerContainer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: inherit;
+
+}
+
+.footerContainer .sendIcon {
+    width: 2vw;
+    height: 5vh;
+    display: block;
+    line-height: 2;
+}
+
+.footerContainer .sticker {
+    visibility: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    bottom: 17vh;
+    left: 34.5vw;
+    width: max-content;
+    height: max-content;
+}
