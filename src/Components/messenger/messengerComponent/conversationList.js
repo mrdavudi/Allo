@@ -52,7 +52,6 @@ function ConversationList() {
     }
 
     function getConversationList() {
-        console.log('hello')
         axios.get('http://click.7grid.ir/conversation/', {
             params: {
                 token: window.localStorage.getItem('token')

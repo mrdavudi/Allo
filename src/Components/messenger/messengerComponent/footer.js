@@ -95,20 +95,18 @@ function Footer(props) {
         }
     }
 
+    function a() {
+        chosenEmoji &&
+        setField(chosenEmoji.emoji)
+        console.log('Field:::', field)
+    }
+
     return (
         <div className={'footerContainer'}>
 
             <div className={'sticker'} id={'sticker'}
                  onMouseLeave={() => document.getElementById('sticker').style.visibility = 'hidden'}>
                 <Picker onEmojiClick={onEmojiClick}/>
-                {
-                    //console.log('Emoji:::', chosenEmoji)
-                    () => chosenEmoji &&
-                        //setField(chosenEmoji.emoji)
-                        //console.log('Emoji:::', chosenEmoji.emoji) &&
-                        setField(chosenEmoji.emoji) &&
-                        console.log('Field::::', field)
-                }
 
             </div>
 
